@@ -11,6 +11,21 @@ const getUserAsync = async name => {
   return data;
 };
 
+const getCalendar = async (month, day) => {
+	let response = await fetch(`https://api.abalin.net/namedays?country=&month=${month}&day=${day}`);
+	let data = await response.json();
+	return data;
+  };
+
+  getCalendar(4,10).then(data => {
+	console.log(data, 'mie mie');
+	console.log('get data', data.data[0].namedays)
+  });
+
+  ///console.log(data.results[0].name, 'test test')
+
+
+
 /*
 getUserAsync("helena").then(data => {
 	console.log('names', data);
