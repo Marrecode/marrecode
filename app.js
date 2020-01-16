@@ -72,7 +72,8 @@ searchNames.addEventListener('submit', e => {
 	e.preventDefault();
 	const originalitem = document.querySelector('#query').value;
 
-	if (name) {
+	if (!originalitem) {
+		alert('enter name pls')
 		console.log(data.results[0]);
 		console.log('test test', name);
 	}
