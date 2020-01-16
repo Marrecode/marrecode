@@ -13,17 +13,19 @@
 
 <body>
 	<header>
-		<h1>Classes</h1>
+		<h1>Nameday</h1>
 	</header>
 	<div class="container">
 		<form id="search-form">
 			<div id="query-wrapper">
-				<input type="text" id="query" name="query" placeholder="Type a name">
+				<input type="text" id="query" name="query" placeholder="Type a swedish name">
 				<input type="submit" id="search" name="search" class="btn btn-light" value="🔍">
 			</div>
 		</form>
 	</div>
+	<h2>Or test with country, day and month</h2>
 	<div class="container">
+		
 		<form id="form-group">
 
 			<label for="country"></label>
@@ -40,15 +42,15 @@
 				  <option value="Italy">Italy</option>
 				  <option value="Poland">Poland</option>
 				  <option value="Slovakia">Slovakia</option>
-				  <option value="USA">USA</option>
+				  <option value="United States of America">USA</option>
     		</select>
 
 
 			<label for="Day"></label>
-			<input type="text" id="getDay" placeholder="Enter day">
+			<input type="text" id="getDay" placeholder="Enter day for the month" required>
 		  
 			<label for="Month"></label>
-			<input type="text" id="getMonth" placeholder="Enter month 1-12">
+			<input type="text" id="getMonth" placeholder="Enter month 1-12" required>
 		  
 			
 			<input type="submit" value="Submit">
@@ -70,6 +72,8 @@
 		
 	</ul>
 	</div>
+	
 	<script src="assets/scripts/app.js"></script>
+	<script src="assets/scripts/async.js"></script>
 </body>
 </html>
