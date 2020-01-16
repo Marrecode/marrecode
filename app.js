@@ -13,14 +13,11 @@ const getUserAsync = async name => {
   return data;
 };
 
-const getCalendar = async (month, day) => {
-	let response = await fetch(`https://api.abalin.net/namedays?country=&month=${month}&day=${day}`);
+const getCalendar = async (country,month, day) => {
+	let response = await fetch(`https://api.abalin.net/namedays?country=${country}&month=${month}&day=${day}`);
 	let sync = await response.json();
 	return sync;
   };
-
-
-  
 
 
 
@@ -28,37 +25,55 @@ const getCalendar = async (month, day) => {
 getDate.addEventListener('submit', e =>{
 	e.preventDefault();
 	
+	const country = document.querySelector('#country').value;
+  	console.log(country, 'click clicky');
 	const month = document.querySelector('#getMonth').value;
 	const day = document.querySelector('#getDay').value;
 	console.log('get month and day', day, month)
-	if (!month && !day) {
+	if (!country && !month && !day) {
 		return;
 	}
 
-	getCalendar(month,day).then(sync => {
-		console.log(sync, 'mie mie');
+getCalendar(country,month,day).then(sync => {
+/*	console.log(sync, 'mie mie');
 		console.log('get data', sync.data[0].namedays);
-		var keys = Object.keys(sync.data[0].namedays);
+	var keys = Object.keys(sync.data[0].namedays);
 		console.log(keys);
 		var dataNames = Object.values(sync.data[0].namedays);
-		console.log(dataNames);
+/*		console.log(dataNames);
 		const entries = Object.entries(sync.data[0].namedays);
 		console.log(entries);
-		console.log(`${entries}`);
+		console.log(`${entries}`);*/
 		giveCalendar(sync);
+
+	if(e.target==="country") {
+			console.log(sync.data[0].namedays);
+	} return
 		///console.log(`vill logga ut alla namn ${data.data[0].namedays.at}`)
-	  });
+ });
 });
 
+
+
 const giveCalendar = sync => {
+		var keyval = sync.data[0];
+		console.log(keyval);
 		var keys = Object.keys(sync.data[0].namedays);
 		console.log(keys);
+		
 		var dataNames = Object.values(sync.data[0].namedays);
 		console.log(dataNames);
-		const entries = Object.entries(sync.data[0].namedays);
+	/*	const entries = Object.entries(sync.data[0].namedays);
+		
+		const test = keys.map(function(sync){
+		return keyval;
+});
+		console.log(test);
+
+	*/	
 	const temp = `<div class="card" style="width: 18rem;">
 	<div class="card-body">
-	<li>${entries}</li>
+	<li>The country code is ${keys} and the names for this day: ${dataNames}</li>
 	</div>
   </div>
   `
