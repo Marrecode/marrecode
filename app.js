@@ -15,8 +15,8 @@ const getUserAsync = async name => {
 
 const getCalendar = async (month, day) => {
 	let response = await fetch(`https://api.abalin.net/namedays?country=&month=${month}&day=${day}`);
-	let data = await response.json();
-	return data;
+	let sync = await response.json();
+	return sync;
   };
 
 
@@ -35,20 +35,35 @@ getDate.addEventListener('submit', e =>{
 		return;
 	}
 
-	getCalendar(month,day).then(data => {
-		console.log(data, 'mie mie');
-		console.log('get data', data.data[0].namedays);
-		let keys = Object.keys(data.data[0].namedays);
+	getCalendar(month,day).then(sync => {
+		console.log(sync, 'mie mie');
+		console.log('get data', sync.data[0].namedays);
+		var keys = Object.keys(sync.data[0].namedays);
 		console.log(keys);
-		let dataNames = Object.values(data.data[0].namedays);
+		var dataNames = Object.values(sync.data[0].namedays);
 		console.log(dataNames);
-		let entries = Object.entries(data.data[0].namedays);
+		const entries = Object.entries(sync.data[0].namedays);
 		console.log(entries);
-		console.log(`${entries}`)
+		console.log(`${entries}`);
+		giveCalendar(sync);
 		///console.log(`vill logga ut alla namn ${data.data[0].namedays.at}`)
 	  });
 });
 
+const giveCalendar = sync => {
+		var keys = Object.keys(sync.data[0].namedays);
+		console.log(keys);
+		var dataNames = Object.values(sync.data[0].namedays);
+		console.log(dataNames);
+		const entries = Object.entries(sync.data[0].namedays);
+	const temp = `<div class="card" style="width: 18rem;">
+	<div class="card-body">
+	<li>${entries}</li>
+	</div>
+  </div>
+  `
+  document.querySelector('#namnsdag2').innerHTML = temp;
+};
 
 ///console.log(data.results[0].name, 'test test')
 /*
