@@ -1,6 +1,8 @@
 
 
 const searchNames = document.querySelector('#search-form');
+const getDate = document.querySelector('#form-group');
+
 
 
 
@@ -17,15 +19,38 @@ const getCalendar = async (month, day) => {
 	return data;
   };
 
-  getCalendar(4,10).then(data => {
-	console.log(data, 'mie mie');
-	console.log('get data', data.data[0].namedays)
-  });
 
-  ///console.log(data.results[0].name, 'test test')
+  
 
 
 
+
+getDate.addEventListener('submit', e =>{
+	e.preventDefault();
+	
+	const month = document.querySelector('#getMonth').value;
+	const day = document.querySelector('#getDay').value;
+	console.log('get month and day', day, month)
+	if (!month && !day) {
+		return;
+	}
+
+	getCalendar(month,day).then(data => {
+		console.log(data, 'mie mie');
+		console.log('get data', data.data[0].namedays);
+		let keys = Object.keys(data.data[0].namedays);
+		console.log(keys);
+		let dataNames = Object.values(data.data[0].namedays);
+		console.log(dataNames);
+		let entries = Object.entries(data.data[0].namedays);
+		console.log(entries);
+		console.log(`${entries}`)
+		///console.log(`vill logga ut alla namn ${data.data[0].namedays.at}`)
+	  });
+});
+
+
+///console.log(data.results[0].name, 'test test')
 /*
 getUserAsync("helena").then(data => {
 	console.log('names', data);
@@ -33,11 +58,10 @@ getUserAsync("helena").then(data => {
 
 */
 
-
-
 searchNames.addEventListener('submit', e => {
 	e.preventDefault();
 	const originalitem = document.querySelector('#query').value;
+	
 
 	if (name) {
 		console.log(data.results[0]);
