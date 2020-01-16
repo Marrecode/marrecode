@@ -1,7 +1,7 @@
 
 
 const searchNames = document.querySelector('#search-form');
-const getDate = document.querySelector('#form-group');
+const getDate = document.querySelector('.form-group');
 
 
 getDate.addEventListener('submit', e =>{
@@ -10,8 +10,8 @@ getDate.addEventListener('submit', e =>{
 	const month = document.querySelector('#getMonth').value;
 	const day = document.querySelector('#getDay').value;
 	const country = document.querySelector('#country').value;
-  	console.log(country, 'click clicky');
-	console.log('get month and day', country, day, month)
+  		console.log(country, 'click clicky');
+		console.log('get month and day', country, day, month)
 	if (!country && !month && !day) {
 		return;
 	}
@@ -27,7 +27,7 @@ getCalendar(country,month,day).then(sync => {
 		console.log(entries);
 		console.log(`${entries}`);*/
 	
-		giveCalendar(sync);
+	giveCalendar(sync);
 
 	if(e.target==="country") {
 			console.log(sync.data[0].namedays);
@@ -74,16 +74,13 @@ searchNames.addEventListener('submit', e => {
 
 	if (!originalitem) {
 		alert('enter name pls')
-		console.log(data.results[0]);
-		console.log('test test', name);
-	}
+	} 
 
-
+	
 getUserAsync(originalitem).then(data => {
 	/*console.log(data.results[0].name, 'test test')
 	console.log(names, 'test test');
 	console.log(`${names[0].name}`)*/
-	
 	const names = data.results;
 	names.forEach(item=>{
 		console.log(`the name is ${item.name} and the day ${item.day} and month ${item.month}`)

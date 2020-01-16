@@ -22,9 +22,12 @@ h1, h2, h3, h4, h5, h6 {
 
 .form-group {
 	background-color: #333;
+	display: Flex;
+	margin: 2rem;
+	flex-wrap: wrap;
 }
 #change {
-	max-width: 20%;
+	max-width: 30%;
 }
 
 .container {
